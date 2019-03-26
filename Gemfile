@@ -5,7 +5,10 @@ ruby '2.6.0'
 
 gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 
+# middleware
+gem 'foreman', '~> 0.85.0', require: false
 gem 'puma', '~> 3.11'
+gem 'unicorn', '~> 5.4', require: false
 
 gem 'jbuilder', '~> 2.5'
 
