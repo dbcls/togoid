@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  app:
+    build: docker/app
+    environment:
+      - TOGOID_RESOURCE_DIR=/data/import
+      - ISQL=isql-vt
+      - ISQL_HOST=virtuoso
+      - ISQL_PORT=1111
+      - ISQL_USER=dba
+      - ISQL_PASSWORD=dba
+    volumes:
+      - .:/app
+      - bundle:/app/vendor/bundle
+      - log:/app/log
+      - node_modules:/app/node_modules
+      - tmp:/app/tmp
+      - www:/var/www
+      - import:/data/import
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - www:/var/www
+    ports:
+      - 127.0.0.1:80:80
+    depends_on:
+      - app
+      - virtuoso
+
+  virtuoso:
+    image: tenforce/virtuoso:virtuoso7.2.4
+    environment:
+      - VIRT_Parameters_NumberOfBuffers=680000
+      - VIRT_Parameters_MaxDirtyBuffers=500000
+    volumes:
+      - ./data/virtuoso:/data
+      - import:/data/import
+
+volumes:
+  bundle:
+    driver: local
+  log:
+    driver: local
+  node_modules:
+    driver: local
+  tmp:
+    driver: local
+  www:
+    driver: local
+  import:
+    driver: local

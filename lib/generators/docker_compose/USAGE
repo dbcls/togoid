@@ -1,0 +1,5 @@
+Description:
+    Generate docker-compose.yml
+
+Example:
+    rails generate docker_compose -e production
