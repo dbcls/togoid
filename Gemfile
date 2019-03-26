@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-byebug', '~> 3.7'
+  gem 'pry-rails', '~> 0.3.9'
   gem 'rspec', '~> 3.8'
 end
 
