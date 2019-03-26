@@ -22,7 +22,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
+# utils
+gem 'faraday', '~> 0.15.4'
+gem 'faraday_middleware', '~> 0.13.1'
+
 group :development, :test do
+  gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug', '~> 3.7'
   gem 'pry-rails', '~> 0.3.9'
