@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [[ $1 = "start-server" ]]; then
+  mkdir -p /app/tmp/pids
   rm /app/tmp/pids/*
 
   bundle install -j8 --path vendor/bundle
