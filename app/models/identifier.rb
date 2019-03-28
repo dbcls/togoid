@@ -1,12 +1,12 @@
 class Identifier
-  IdentifierType = Struct.new(:klass, :key, :prefix, :pattern)
+  IdentifierType = Struct.new(:klass, :key, :label, :prefix, :pattern)
 
   TYPES = {
-    hgnc: IdentifierType.new(HGNC, :hgnc, 'http://identifiers.org/hgnc/', /^((HGNC|hgnc):)?\d{1,5}$/),
-    ncbi_gene: IdentifierType.new(NCBIGene, :ncbi, 'http://identifiers.org/ncbigene/', /^\d+$/),
-    refseq: IdentifierType.new(RefSeq, :refseq, 'http://identifiers.org/refseq/', /^(NC|NG|NM|NR|NT|XM|XR|YP)_\d+$/),
-    # affymetrix: IdentifierType.new(Affymetrix, :affymetrix, 'http://identifiers.org/', //),
-    ensembl: IdentifierType.new(Ensembl, :ensg, 'http://identifiers.org/ensembl/', /^ENSG\d{11}$/)
+    hgnc: IdentifierType.new(HGNC, :hgnc, 'HGNC', 'http://identifiers.org/hgnc/', /^((HGNC|hgnc):)?\d{1,5}$/),
+    ncbi_gene: IdentifierType.new(NCBIGene, :ncbi, 'NCBI Gene', 'http://identifiers.org/ncbigene/', /^\d+$/),
+    refseq: IdentifierType.new(RefSeq, :refseq, 'RefSeq', 'http://identifiers.org/refseq/', /^(NC|NG|NM|NR|NT|XM|XR|YP)_\d+$/),
+    # affymetrix: IdentifierType.new(Affymetrix, :affymetrix, 'Affymetrix', 'http://identifiers.org/', //),
+    ensembl: IdentifierType.new(Ensembl, :ensg, 'Ensembl Gene', 'http://identifiers.org/ensembl/', /^ENSG\d{11}$/)
   }.freeze
 
   class << self

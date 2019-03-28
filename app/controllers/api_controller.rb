@@ -16,17 +16,19 @@ class ApiController < ApplicationController
       {
         source: {
           id: id,
-          type: type.key
+          type: type.key,
+          label: type.label
         },
         destination: Array(dest.cross_references)
                        .select { |x| x.match?(Identifier::TYPES[:ncbi_gene].prefix) }
-                       .map { |x| { id: RDF::URI(x).path.split('/').last, type: 'ncbi_gene' } }
+                       .map { |x| { id: RDF::URI(x).path.split('/').last, type: 'ncbi_gene', label: 'NCBI Gene' } } # TODO hard coded
       }
     rescue StandardError => e
       {
         source: {
           id: id,
-          type: type.key
+          type: type.key,
+          label: type.label
         },
         error: e.message
       }
