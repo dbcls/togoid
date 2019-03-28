@@ -1,2 +1,2 @@
 webpack: bundle exec bin/webpack-dev-server
-rails: bundle exec rails server
+rails: bundle exec rails server --binding 0.0.0.0 --port 8080
