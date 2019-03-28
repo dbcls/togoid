@@ -37,6 +37,7 @@ services:
     environment:
       - VIRT_Parameters_NumberOfBuffers=680000
       - VIRT_Parameters_MaxDirtyBuffers=500000
+      - VIRT_Parameters_DirsAllowed="., /data/import, /usr/local/virtuoso-opensource/share/virtuoso/vad"
     volumes:
       - ./data/virtuoso:/data
       - import:/data/import
