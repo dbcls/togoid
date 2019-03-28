@@ -1,5 +1,16 @@
 # TogoID
 
+## Prerequsites
+
+## Installation
+
+```
+$ bundle exec rails g docker_compose --env=production
+$ docker-compose up -d
+$ docker-compose exec app bundle exec thor resource:fetch --dir /data/import hgnc
+$ docker-compose exec app bundle exec thor resource:load --dir /data/import hgnc
+```
+
 ## Web API
 
 Note: All your request URLs must be percent-encoded
