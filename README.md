@@ -1,24 +1,64 @@
-# README
+# TogoID
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Web API
 
-Things you may want to cover:
+Note: All your request URLs must be percent-encoded
 
-* Ruby version
+### ID conversion
 
-* System dependencies
+#### URL
 
-* Configuration
+`GET` /convert?id=249%2C250&from=hgnc
 
-* Database creation
+#### Parameters
 
-* Database initialization
+| Key  | Value  |
+|------|--------|
+| id `required` | Identifiers (comma or whitespace separated) |
+| from | Input data source<br />Detect automatically if no value specified |
+| to | Output data source |
 
-* How to run the test suite
+Available data sources
 
-* Services (job queues, cache servers, search engines, etc.)
+| Data source | Value | Pattern | Auto detection |
+|:-----------:|:-----:|---------|:--------------:|
+| HGNC ID | hgnc | <code>^((HGNC&#124;hgnc):)?\d{1,5}$</code> | △ (if prefix given) |
+| NCBI Gene ID | ncbi | `^\d+$` | × |
+| RefSeq ID | refseq | <code>^(NC&#124;NG&#124;NM&#124;NR&#124;NT&#124;XM&#124;XR&#124;YP)_\d+$</code> | ○ |
+| Affymetrix ID | affymetrix | | ○ |
+| Ensembl ID | ensg | `^ENSG\d{11}$` | ○ |
 
-* Deployment instructions
+#### Response
 
-* ...
+Body
+
+```json
+[
+  {
+    "source": {
+      "id": "249",
+      "type": "hgnc"
+    },
+    "destination": [
+      {
+        "id": "124",
+        "type": "ncbi_gene"
+      }
+    ]
+  },
+  {
+    "source": {
+      "id": "250",
+      "type": "hgnc"
+    },
+    "destination": [
+      {
+        "id": "125",
+        "type": "ncbi_gene"
+      }
+    ]
+  }
+]
+```
+
+## Development
