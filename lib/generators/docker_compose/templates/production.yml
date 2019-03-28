@@ -6,6 +6,7 @@ services:
     environment:
       - RAILS_ENV=production
       - NODE_ENV=production
+      - ENDPOINT_URL=http://nginx/sparql
       - TOGOID_RESOURCE_DIR=/data/import
       - ISQL=isql-vt
       - ISQL_HOST=virtuoso

@@ -4,6 +4,7 @@ services:
   app:
     build: docker/app
     environment:
+      - ENDPOINT_URL=http://nginx/sparql
       - TOGOID_RESOURCE_DIR=/data/import
       - ISQL=isql-vt
       - ISQL_HOST=virtuoso
