@@ -25,6 +25,7 @@ gem 'uglifier', '>= 1.3.0'
 # utils
 gem 'faraday', '~> 0.15.4'
 gem 'faraday_middleware', '~> 0.13.1'
+gem 'linkeddata', '~> 3.0', '>= 3.0.1'
 
 group :development, :test do
   gem 'awesome_print'
