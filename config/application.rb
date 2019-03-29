@@ -31,5 +31,9 @@ module TogoId
     config.generators.system_tests = nil
 
     config.paths.add File.join('app', 'lib'), eager_load: true
+
+    console do
+      Rails.logger = Logger.new(STDERR)
+    end
   end
 end
