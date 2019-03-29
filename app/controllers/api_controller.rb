@@ -21,7 +21,7 @@ class ApiController < ApplicationController
         },
         destination: Array(dest.cross_references)
                        .select { |x| x.match?(Identifier::TYPES[:ncbi_gene].prefix) }
-                       .map { |x| { id: RDF::URI(x).path.split('/').last, type: 'ncbi_gene', label: 'NCBI Gene' } } # TODO hard coded
+                       .map { |x| { id: RDF::URI(x).path.split('/').last, type: 'ncbi', label: 'NCBI Gene' } } # TODO hard coded
       }
     rescue StandardError => e
       {
