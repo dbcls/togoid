@@ -10,6 +10,8 @@ gem 'foreman', '~> 0.85.0', require: false
 gem 'puma', '~> 3.11'
 gem 'unicorn', '~> 5.4', require: false
 
+gem 'hamlit', '~> 2.9'
+gem 'hamlit-rails', '~> 0.2.2'
 gem 'jbuilder', '~> 2.5'
 
 # js/css
