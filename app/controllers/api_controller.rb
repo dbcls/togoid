@@ -5,8 +5,8 @@ class ApiController < ApplicationController
 
     raise(TogoIDError, 'Missing parameter: id') unless (ids = params[:id].split(/[,\s]/))
 
-    type = if (from = params[:from].presence&.to_sym)
-             Identifier::TYPES[from] || raise(TogoIDError, "Unknown value for 'from': #{from}")
+    type = if (from = params[:from].presence)
+             Identifier::TYPES[from]&.to_sym || raise(TogoIDError, "Unknown value for 'from': #{from}")
            else
              Identifier.detect(ids.first)
            end
