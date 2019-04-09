@@ -1,2 +1,29 @@
-%h1 Converter#index
-%p Find me in app/views/convert/index.html.haml
+- content_for :head do
+  = stylesheet_pack_tag 'converter'
+  = javascript_pack_tag 'converter'
+
+#main
+  %section
+    .main-container
+      #search-methods-container
+        = render 'layouts/search_methods_selector', current: @current
+        #methods.no-result-column
+          #mappings-container.method-container{'data-mapping-mode': @mode}
+            .inner
+              #mappings-selector-container
+              #mappings-id-container
+                %h2
+                  Identifiers
+                  %span#download-area
+                #add-new-id
+                  %textarea#identifiers{name:'identifiers', required: 'required'}
+                  = button_tag 'Execute', {id: 'execute', class: 'button'}
+                  #loading
+
+                #results_info
+
+                %table#mapped-ids
+                  %thead
+                  %tbody
+
+                #message.text-center
