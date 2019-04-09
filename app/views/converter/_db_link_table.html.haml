@@ -1,0 +1,9 @@
+- @db_links.each do |db_link|
+  %tr
+    - db_link.values.each do |uri|
+      %td
+        %div
+          %a(href=uri)
+            %span.id-name= uri.split('/').last
+            %br
+            %span.url= uri

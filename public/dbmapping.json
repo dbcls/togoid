@@ -1,0 +1,545 @@
+{
+	"category": {
+		"togogenome": {
+			"label": "TogoGenome",
+			"color": { "hue": 189, "saturation": 57, "lightness": 54},
+			"links": [ "togogenome"]
+		},
+		"chemicalCompound": {
+			"label": "Chemical compound",
+			"color": { "hue": 66, "saturation": 100, "lightness": 40 },
+			"links": [ "chemicalCompound", "enzymeReaction", "glycan", "lipid", "literature", "protein", "proteinFunction", "taxonomy" ]
+		},
+		"disease": {
+			"label": "Disease",
+			"color": { "hue": 317, "saturation": 100, "lightness": 34 },
+			"links": [ "enzymeReaction", "gene", "genome", "literature", "promoter", "protein", "proteinDomain", "proteinStructure" ]
+		},
+		"enzymeReaction": {
+			"label": "Enzyme reaction",
+			"color": { "hue": 80, "saturation": 100, "lightness": 33 },
+			"links": [ "chemicalCompound", "disease", "enzymeReaction", "gene", "geneFunction", "genome", "glycan", "lipid", "literature", "pathway", "protein", "proteinFunction", "proteinDomain", "proteinOrtholog", "proteinStructure", "taxonomy" ]
+		},
+		"gene": {
+			"label": "Gene",
+			"color": { "hue": 189, "saturation": 57, "lightness": 54 },
+			"links": [ "disease", "enzymeReaction", "gene", "genome", "literature", "pathway", "promoter", "protein", "proteinDomain", "proteinStructure" ]
+		},
+		"geneFunction": {
+			"label": "Gene function",
+			"color": { "hue": 185, "saturation": 75, "lightness": 65 },
+			"links": [ "enzymeReaction", "literature", "pathway", "proteinOrtholog" ]
+		},
+		"genome": {
+			"label": "Genome",
+			"color": { "hue": 186, "saturation": 100, "lightness": 25 },
+			"links": [ "disease", "enzymeReaction", "gene", "genome", "literature", "pathway", "promoter", "protein", "proteinDomain", "proteinStructure", "taxonomy" ]
+		},
+		"glycan": {
+			"label": "Glycan",
+			"color": { "hue": 335, "saturation": 100, "lightness": 65 },
+			"links": [ "chemicalCompound", "enzymeReaction", "glycan", "lipid", "literature" ]
+		},
+		"lipid": {
+			"label": "Lipid",
+			"color": { "hue": 39, "saturation": 100, "lightness": 50 },
+			"links": [ "chemicalCompound", "enzymeReaction", "glycan", "lipid", "literature", "protein", "taxonomy" ]
+		},
+		"literature": {
+			"label": "Literature",
+			"color": { "hue": 36, "saturation": 100, "lightness": 25 },
+			"links": [ "chemicalCompound", "disease", "enzymeReaction", "gene", "geneFunction", "genome", "glycan", "lipid", "literature", "pathway", "protein", "proteinFunction", "proteinDomain", "proteinOrtholog", "taxonomy" ]
+		},
+		"pathway": {
+			"label": "Pathway",
+			"color": { "hue": 154, "saturation": 49, "lightness": 49 },
+			"links": [ "enzymeReaction", "gene", "geneFunction", "genome", "literature", "pathway", "protein", "proteinDomain", "proteinOrtholog", "proteinStructure" ]
+		},
+		"promoter": {
+			"label": "Promoter",
+			"color": { "hue": 210, "saturation": 73, "lightness": 55 },
+			"links": [ "disease", "gene", "genome", "protein", "proteinDomain" ]
+		},
+		"protein": {
+			"label": "Protein",
+			"color": { "hue": 11, "saturation": 100, "lightness": 57 },
+			"links": [ "chemicalCompound", "disease", "enzymeReaction", "gene", "genome", "lipid", "literature", "pathway", "promoter", "protein", "proteinDomain", "proteinStructure", "taxonomy" ]
+		},
+		"proteinFunction": {
+			"label": "Protein function",
+			"color": { "hue": 7, "saturation": 35, "lightness": 54 },
+			"links": [ "chemicalCompound", "enzymeReaction", "literature", "taxonomy" ]
+		},
+		"proteinDomain": {
+			"label": "Protein domain",
+			"color": { "hue": 346, "saturation": 100, "lightness": 42 },
+			"links": [ "disease", "enzymeReaction", "gene", "genome", "literature", "pathway", "promoter", "protein", "proteinStructure" ]
+		},
+		"proteinOrtholog": {
+			"label": "Protein ortholog",
+			"color": { "hue": 29, "saturation": 100, "lightness": 50 },
+			"links": [ "enzymeReaction", "geneFunction", "literature", "pathway" ]
+		},
+		"proteinStructure": {
+			"label": "Protein structure",
+			"color": { "hue": 29, "saturation": 47, "lightness": 60 },
+			"links": [ "disease", "enzymeReaction", "gene", "genome", "pathway", "protein", "proteinDomain" ]
+		},
+		"taxonomy": {
+			"label": "Taxonomy",
+			"color": { "hue": 252, "saturation": 44, "lightness": 57 },
+			"links": [ "chemicalCompound", "enzymeReaction", "genome", "lipid", "literature", "protein", "proteinFunction", "taxonomy" ]
+		}
+	},
+	"DBs": {
+		"togogenome": {
+			"identifiers": "http://togogenome.org/gene/",
+			"label": "TogoGenome",
+			"primary": true,
+			"category": "togogenome",
+			"links": ["uniprot"]
+		},
+		"3dmet": {
+			"identifiers": "http://identifiers.org/3dmet",
+			"label": "3DMET",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["chebi", "chembl.compound", "ec-code", "hmdb", "jcsd", "knapsack", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "taxonomy", "uniprot"]
+		},
+		"chebi": {
+			"identifiers": "http://identifiers.org/chebi",
+			"label": "ChEBI",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chembl.compound", "dailymed", "drugbank", "ec-code", "glycoepitope", "glycomedb", "hmdb", "jcggdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"chembl.compound": {
+			"identifiers": "http://identifiers.org/chembl.compound",
+			"label": "ChEMBL compound",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chebi", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"dailymed": {
+			"identifiers": "http://identifiers.org/dailymed",
+			"label": "DailyMed",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["chebi", "chembl.compound", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb"]
+		},
+		"drugbank": {
+			"identifiers": "http://identifiers.org/drugbank",
+			"label": "DrugBank",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["chebi", "chembl.compound", "dailymed", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb"]
+		},
+		"hmdb": {
+			"identifiers": "http://identifiers.org/hmdb",
+			"label": "HMDB",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"jcsd": {
+			"identifiers": "http://identifiers.org/jcsd",
+			"label": "Japan Chemical Substance Dictionary",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"knapsack": {
+			"identifiers": "http://identifiers.org/knapsack",
+			"label": "KnapSack",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"ligandbox": {
+			"identifiers": "http://identifiers.org/ligandbox",
+			"label": "LigandBox",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb"]
+		},
+		"massbank": {
+			"identifiers": "http://identifiers.org/massbank",
+			"label": "MassBank",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"pdb-ccd": {
+			"identifiers": "http://identifiers.org/pdb-ccd",
+			"label": "Chemical Component Dictionary",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pubchem.substance", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"sider.drug": {
+			"identifiers": "http://identifiers.org/sider.drug",
+			"label": "SIDER Drug",
+			"primary": false,
+			"category": "chemicalCompound",
+			"links": ["chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "taxonomy", "tcdb"]
+		},
+		"pubchem.substance": {
+			"identifiers": "http://identifiers.org/pubchem.substance",
+			"label": "PubChem-substance",
+			"primary": true,
+			"category": "chemicalCompound",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "glycoepitope", "glycomedb", "hmdb", "jcggdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "pdb-ccd", "pubmed", "sider.drug", "taxonomy", "tcdb", "uniprot"]
+		},
+		"omim": {
+			"identifiers": "http://identifiers.org/omim",
+			"label": "OMIM",
+			"primary": true,
+			"category": "disease",
+			"links": ["ec-code", "ensembl", "epd", "hgnc", "hprd", "insdc", "medlineplus", "mirbase", "ncbigene", "ncbiprotein", "pdb", "pfam", "pubmed", "refseq", "unigene", "uniprot"]
+		},
+		"ec-code": {
+			"identifiers": "http://identifiers.org/ec-code",
+			"label": "Enzyme Nomenclature",
+			"primary": true,
+			"category": "enzymeReaction",
+			"links": ["3dmet", "asap", "beetlebase", "biocyc", "bioproject", "biosystems", "chebi", "chembl.compound", "cmr.gene", "cogs", "dailymed", "dictybase.gene", "drugbank", "ecogene", "ensembl", "flybase", "genedb", "glycoepitope", "glycomedb", "go", "hgnc", "hmdb", "hprd", "insdc", "jcggdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "maizegdb.locus", "massbank", "mgd", "myco.tuber", "ncbigene", "ncbiprotein", "omim", "pdb-ccd", "pdb", "pfam", "plasmodb", "pseudomonas", "pubchem.substance", "pubmed", "refseq", "rgd", "sabiork.reaction", "sider.drug", "tair.locus", "taxonomy", "tcdb", "tgd", "umbbd.pathway", "umbbd.reaction", "umbbd.rule", "unigene", "uniprot", "wormbase", "xenbase"]
+		},
+		"umbbd.reaction": {
+			"identifiers": "http://identifiers.org/umbbd.reaction",
+			"label": "UM-BBD Reaction",
+			"primary": false,
+			"category": "enzymeReaction",
+			"links": ["ec-code", "pubmed", "sabiork.reaction"]
+		},
+		"umbbd.rule": {
+			"identifiers": "http://identifiers.org/umbbd.rule",
+			"label": "UM-BBD Biotransformation Rule",
+			"primary": false,
+			"category": "enzymeReaction",
+			"links": ["ec-code"]
+		},
+		"sabiork.reaction": {
+			"identifiers": "http://identifiers.org/sabiork.reaction",
+			"label": "SABIO-RK Reaction",
+			"primary": false,
+			"category": "enzymeReaction",
+			"links": ["ec-code", "pubmed", "umbbd.reaction"]
+		},
+		"cmr.gene": {
+			"identifiers": "http://identifiers.org/cmr.gene",
+			"label": "CMR Gene",
+			"primary": false,
+			"category": "gene",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "uniprot"]
+		},
+		"ecogene": {
+			"identifiers": "http://identifiers.org/ecogene",
+			"label": "EcoGene",
+			"primary": false,
+			"category": "gene",
+			"links": ["asap", "biocyc", "ec-code", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "uniprot"]
+		},
+		"genedb": {
+			"identifiers": "http://identifiers.org/genedb",
+			"label": "GeneDB",
+			"primary": false,
+			"category": "gene",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "plasmodb", "pubmed", "refseq", "uniprot"]
+		},
+		"hgnc": {
+			"identifiers": "http://identifiers.org/hgnc",
+			"label": "HGNC",
+			"primary": false,
+			"category": "gene",
+			"links": ["ec-code", "ensembl", "hprd", "insdc", "mirbase", "ncbigene", "ncbiprotein", "omim", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"insdc": {
+			"identifiers": "http://identifiers.org/insdc",
+			"label": "Nucleotide Sequence Database",
+			"primary": false,
+			"category": "gene",
+			"links": ["beetlebase", "cmr.gene", "ec-code", "ensembl", "epd", "flybase", "genedb", "hgnc", "hprd", "maizegdb.locus", "mgd", "mirbase", "myco.tuber", "ncbigene", "ncbiprotein", "omim", "pdb", "pfam", "plasmodb", "refseq", "rgd", "tair.locus", "tgd", "unigene", "uniprot", "wormbase", "xenbase"]
+		},
+		"mirbase": {
+			"identifiers": "http://identifiers.org/mirbase",
+			"label": "miRBase Sequence",
+			"primary": false,
+			"category": "gene",
+			"links": ["ensembl", "flybase", "hgnc", "insdc", "mgd", "ncbigene", "omim", "refseq", "rgd", "unigene"]
+		},
+		"ncbigene": {
+			"identifiers": "http://identifiers.org/ncbigene",
+			"label": "NCBI Gene",
+			"primary": true,
+			"category": "gene",
+			"links": ["asap", "beetlebase", "biocyc", "cmr.gene", "dictybase.gene", "ec-code", "ecogene", "ensembl", "flybase", "genedb", "hgnc", "hprd", "insdc", "maizegdb.locus", "mgd", "mirbase", "myco.tuber", "ncbiprotein", "omim", "pdb", "pfam", "plasmodb", "pseudomonas", "pubmed", "refseq", "rgd", "tair.locus", "tgd", "unigene", "uniprot", "wormbase", "xenbase"]
+		},
+		"unigene": {
+			"identifiers": "http://identifiers.org/unigene",
+			"label": "UniGene",
+			"primary": false,
+			"category": "gene",
+			"links": ["beetlebase", "ec-code", "ensembl", "flybase", "hgnc", "hprd", "insdc", "maizegdb.locus", "mgd", "mirbase", "ncbigene", "ncbiprotein", "omim", "pdb", "pfam", "refseq", "rgd", "tair.locus", "tgd", "uniprot", "wormbase", "xenbase"]
+		},
+		"go": {
+			"identifiers": "http://identifiers.org/go",
+			"label": "Gene Ontology",
+			"primary": true,
+			"category": "geneFunction",
+			"links": ["biosystems", "cogs", "ec-code", "pubmed", "umbbd.pathway"]
+		},
+		"asap": {
+			"identifiers": "http://identifiers.org/asap",
+			"label": "ASAP",
+			"primary": false,
+			"category": "genome",
+			"links": ["biocyc", "ec-code", "ecogene", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "uniprot"]
+		},
+		"beetlebase": {
+			"identifiers": "http://identifiers.org/beetlebase",
+			"label": "BeetleBase",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"dictybase.gene": {
+			"identifiers": "http://identifiers.org/dictybase.gene",
+			"label": "Dictybase Gene",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "uniprot"]
+		},
+		"ensembl": {
+			"identifiers": "http://identifiers.org/ensembl",
+			"label": "Ensembl",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "hgnc", "hprd", "insdc", "mgd", "mirbase", "ncbigene", "ncbiprotein", "omim", "pdb", "pfam", "refseq", "rgd", "unigene", "uniprot", "xenbase"]
+		},
+		"flybase": {
+			"identifiers": "http://identifiers.org/flybase",
+			"label": "FlyBase",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "insdc", "mirbase", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"maizegdb.locus": {
+			"identifiers": "http://identifiers.org/maizegdb.locus",
+			"label": "MaizeGDB Locus",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"mgd": {
+			"identifiers": "http://identifiers.org/mgd",
+			"label": "Mouse Genome Database",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "ensembl", "insdc", "mirbase", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"myco.tuber": {
+			"identifiers": "http://identifiers.org/myco.tuber",
+			"label": "MycoBrowser tuberculosis",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "uniprot"]
+		},
+		"plasmodb": {
+			"identifiers": "http://identifiers.org/plasmodb",
+			"label": "PlasmoDB",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "genedb", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "pubmed", "refseq", "uniprot"]
+		},
+		"pseudomonas": {
+			"identifiers": "http://identifiers.org/pseudomonas",
+			"label": "Pseudomonas Genome Database",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "uniprot"]
+		},
+		"refseq": {
+			"identifiers": "http://identifiers.org/refseq",
+			"label": "RefSeq",
+			"primary": true,
+			"category": "genome",
+			"links": ["asap", "beetlebase", "biocyc", "bioproject", "cmr.gene", "dictybase.gene", "ec-code", "ecogene", "ensembl", "epd", "flybase", "genedb", "hgnc", "hprd", "insdc", "maizegdb.locus", "mgd", "mirbase", "myco.tuber", "ncbigene", "ncbiprotein", "omim", "pdb", "pfam", "plasmodb", "pseudomonas", "pubmed", "rgd", "tair.locus", "taxonomy", "tgd", "unigene", "uniprot", "wormbase", "xenbase"]
+		},
+		"rgd": {
+			"identifiers": "http://identifiers.org/rgd",
+			"label": "Rat Genome Database",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "ensembl", "insdc", "mirbase", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"tair.locus": {
+			"identifiers": "http://identifiers.org/tair.locus",
+			"label": "TAIR Locus",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"tgd": {
+			"identifiers": "http://identifiers.org/tgd",
+			"label": "Tetrahymena Genome Database",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"wormbase": {
+			"identifiers": "http://identifiers.org/wormbase",
+			"label": "WormBase",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"xenbase": {
+			"identifiers": "http://identifiers.org/xenbase",
+			"label": "Xenbase",
+			"primary": false,
+			"category": "genome",
+			"links": ["ec-code", "ensembl", "insdc", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"glycoepitope": {
+			"identifiers": "http://identifiers.org/glycoepitope",
+			"label": "GlycoEpitope",
+			"primary": false,
+			"category": "glycan",
+			"links": ["chebi", "ec-code", "glycomedb", "jcggdb", "lipidbank", "pubchem.substance", "pubmed"]
+		},
+		"glycomedb": {
+			"identifiers": "http://identifiers.org/glycomedb",
+			"label": "GlycomeDB",
+			"primary": false,
+			"category": "glycan",
+			"links": ["chebi", "ec-code", "glycoepitope", "jcggdb", "lipidbank", "pubchem.substance", "pubmed"]
+		},
+		"jcggdb": {
+			"identifiers": "http://identifiers.org/jcggdb",
+			"label": "JCGGDB",
+			"primary": true,
+			"category": "glycan",
+			"links": ["chebi", "ec-code", "glycoepitope", "glycomedb", "lipidbank", "pubchem.substance", "pubmed"]
+		},
+		"lipidbank": {
+			"identifiers": "http://identifiers.org/lipidbank",
+			"label": "LipidBank",
+			"primary": true,
+			"category": "lipid",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "glycoepitope", "glycomedb", "hmdb", "jcggdb", "jcsd", "knapsack", "ligandbox", "lipidmaps", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy"]
+		},
+		"lipidmaps": {
+			"identifiers": "http://identifiers.org/lipidmaps",
+			"label": "LIPID MAPS",
+			"primary": false,
+			"category": "lipid",
+			"links": ["3dmet", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "massbank", "pdb-ccd", "pubchem.substance", "sider.drug", "taxonomy", "uniprot"]
+		},
+		"medlineplus": {
+			"identifiers": "http://identifiers.org/medlineplus",
+			"label": "MedlinePlus",
+			"primary": false,
+			"category": "literature",
+			"links": ["omim", "pubmed", "taxonomy"]
+		},
+		"pubmed": {
+			"identifiers": "http://identifiers.org/pubmed",
+			"label": "PubMed",
+			"primary": true,
+			"category": "literature",
+			"links": ["3dmet", "bioproject", "biosystems", "chebi", "chembl.compound", "cogs", "dailymed", "drugbank", "ec-code", "genedb", "glycoepitope", "glycomedb", "go", "hmdb", "jcggdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "massbank", "medlineplus", "ncbigene", "ncbiprotein", "omim", "pdb-ccd", "pfam", "plasmodb", "pubchem.substance", "refseq", "sabiork.reaction", "sider.drug", "taxonomy", "tcdb", "umbbd.pathway", "umbbd.reaction", "uniprot"]
+		},
+		"biocyc": {
+			"identifiers": "http://identifiers.org/biocyc",
+			"label": "BioCyc",
+			"primary": false,
+			"category": "pathway",
+			"links": ["asap", "ec-code", "ecogene", "ncbigene", "ncbiprotein", "pdb", "pfam", "refseq", "uniprot"]
+		},
+		"biosystems": {
+			"identifiers": "http://identifiers.org/biosystems",
+			"label": "BioSystems",
+			"primary": true,
+			"category": "pathway",
+			"links": ["cogs", "ec-code", "go", "pubmed", "umbbd.pathway"]
+		},
+		"umbbd.pathway": {
+			"identifiers": "http://identifiers.org/umbbd.pathway",
+			"label": "UM-BBD Pathway",
+			"primary": false,
+			"category": "pathway",
+			"links": ["biosystems", "ec-code", "go", "pubmed"]
+		},
+		"epd": {
+			"identifiers": "http://identifiers.org/epd",
+			"label": "EPD",
+			"primary": true,
+			"category": "promoter",
+			"links": ["insdc", "omim", "pfam", "refseq", "uniprot"]
+		},
+		"hprd": {
+			"identifiers": "http://identifiers.org/hprd",
+			"label": "HPRD",
+			"primary": false,
+			"category": "protein",
+			"links": ["ec-code", "ensembl", "hgnc", "insdc", "ncbigene", "ncbiprotein", "omim", "pdb", "pfam", "refseq", "unigene", "uniprot"]
+		},
+		"ncbiprotein": {
+			"identifiers": "http://identifiers.org/ncbiprotein",
+			"label": "NCBI Protein",
+			"primary": false,
+			"category": "protein",
+			"links": ["asap", "beetlebase", "biocyc", "bioproject", "cmr.gene", "dictybase.gene", "ec-code", "ecogene", "ensembl", "flybase", "genedb", "hgnc", "hprd", "insdc", "maizegdb.locus", "mgd", "myco.tuber", "ncbigene", "omim", "pdb", "pfam", "plasmodb", "pseudomonas", "pubmed", "refseq", "rgd", "tair.locus", "taxonomy", "tgd", "unigene", "uniprot", "wormbase", "xenbase"]
+		},
+		"uniprot": {
+			"identifiers": "http://identifiers.org/uniprot",
+			"label": "UniProt",
+			"primary": true,
+			"category": "protein",
+			"links": ["3dmet", "asap", "beetlebase", "biocyc", "chebi", "chembl.compound", "cmr.gene", "dictybase.gene", "ec-code", "ecogene", "ensembl", "epd", "flybase", "genedb", "hgnc", "hmdb", "hprd", "insdc", "jcsd", "knapsack", "lipidmaps", "maizegdb.locus", "massbank", "mgd", "myco.tuber", "ncbigene", "ncbiprotein", "omim", "pdb-ccd", "pdb", "pfam", "plasmodb", "pseudomonas", "pubchem.substance", "pubmed", "refseq", "rgd", "tair.locus", "taxonomy", "tgd", "unigene", "wormbase", "xenbase", "togogenome"]
+		},
+		"pfam": {
+			"identifiers": "http://identifiers.org/pfam",
+			"label": "Pfam",
+			"primary": true,
+			"category": "proteinDomain",
+			"links": ["asap", "beetlebase", "biocyc", "cmr.gene", "dictybase.gene", "ec-code", "ecogene", "ensembl", "epd", "flybase", "genedb", "hgnc", "hprd", "insdc", "maizegdb.locus", "mgd", "myco.tuber", "ncbigene", "ncbiprotein", "omim", "pdb", "plasmodb", "pseudomonas", "pubmed", "refseq", "rgd", "tair.locus", "tgd", "unigene", "uniprot", "wormbase", "xenbase"]
+		},
+		"tcdb": {
+			"identifiers": "http://identifiers.org/tcdb",
+			"label": "Transport Classification Database",
+			"primary": true,
+			"category": "proteinFunction",
+			"links": ["chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "massbank", "pdb-ccd", "pubchem.substance", "pubmed", "sider.drug", "taxonomy"]
+		},
+		"cogs": {
+			"identifiers": "http://identifiers.org/cogs",
+			"label": "COGs",
+			"primary": true,
+			"category": "proteinOrtholog",
+			"links": ["biosystems", "ec-code", "go", "pubmed"]
+		},
+		"pdb": {
+			"identifiers": "http://identifiers.org/pdb",
+			"label": "PDB",
+			"primary": true,
+			"category": "proteinStructure",
+			"links": ["asap", "beetlebase", "biocyc", "cmr.gene", "dictybase.gene", "ec-code", "ecogene", "ensembl", "flybase", "genedb", "hgnc", "hprd", "insdc", "maizegdb.locus", "mgd", "myco.tuber", "ncbigene", "ncbiprotein", "omim", "pfam", "plasmodb", "pseudomonas", "refseq", "rgd", "tair.locus", "tgd", "unigene", "uniprot", "wormbase", "xenbase"]
+		},
+		"bioproject": {
+			"identifiers": "http://identifiers.org/bioproject",
+			"label": "BioProject",
+			"primary": false,
+			"category": "taxonomy",
+			"links": ["ec-code", "ncbiprotein", "pubmed", "refseq", "taxonomy"]
+		},
+		"taxonomy": {
+			"identifiers": "http://identifiers.org/taxonomy",
+			"label": "Taxonomy",
+			"primary": true,
+			"category": "taxonomy",
+			"links": ["3dmet", "bioproject", "chebi", "chembl.compound", "dailymed", "drugbank", "ec-code", "hmdb", "jcsd", "knapsack", "ligandbox", "lipidbank", "lipidmaps", "massbank", "medlineplus", "ncbiprotein", "pdb-ccd", "pubchem.substance", "pubmed", "refseq", "sider.drug", "tcdb", "uniprot"]
+		}
+	}
+}
+
