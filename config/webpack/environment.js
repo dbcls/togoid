@@ -10,8 +10,8 @@ environment.plugins.prepend('Provide',
   })
 );
 
-const erb = require('./loaders/erb');
-environment.loaders.prepend('erb', erb);
+environment.loaders.prepend('erb', require('./loaders/erb'));
+environment.loaders.prepend('expose', require('./loaders/expose'));
 
 module.exports = environment;
 
