@@ -1,0 +1,347 @@
+#search-methods-container {
+  background-color: #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  margin-top: -16px;
+  margin-bottom: 12px;
+
+  & + div {
+    padding: 14px 20px;
+    box-sizing: border-box;
+  }
+}
+
+#search-methods-selector {
+  margin: 0 0 8px;
+  padding: 10px 5px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 17px;
+  height: 37px;
+  position: relative;
+  background: #45b8cc;
+  background: -webkit-linear-gradient(top, #45b8cc 1%, #33717f);
+  background: linear-gradient(180deg, #45b8cc 1%, #33717f);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$color_base_blue", endColorstr="$color_base_blue_dark", GradientType=0);
+
+  li {
+    list-style: none;
+    cursor: pointer;
+
+    &.search-methods-visibility-button {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      font-weight: 400;
+      color: #fff;
+      border: none;
+      padding: 0;
+    }
+
+    &.search-methods-visibility-button:after {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 14px;
+      background-position: -140px -60px;
+      margin-left: .5em;
+    }
+
+    &.search-methods-visibility-button.hide {
+      display: inline-block;
+    }
+
+    &.search-methods-visibility-button.hide:after {
+      background-position: -160px -60px;
+    }
+  }
+
+  & > li {
+    float: left;
+    line-height: 17px;
+    position: relative;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+    a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+    }
+
+    &.current {
+      color: #fff;
+
+      &:after {
+        content: "";
+        display: block;
+        width: 19px;
+        height: 10px;
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-10px);
+        -ms-transform: translateX(-10px);
+        -moz-transform: translateX(-10px);
+        -webkit-transform: translateX(-10px);
+        background-position: -120px -40px;
+      }
+    }
+
+    &:hover {
+      color: #fff;
+
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.converted-id {
+  display: inline-block;
+  line-height: 20px;
+  padding: 2px 0;
+
+  & + .converted-id {
+    margin-left: .2em;
+  }
+
+  & > * {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  & > .database {
+    padding: 2px 4px 2px 8px;
+    font-size: 12px;
+    background-color: #666;
+    color: #DDD;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  & > .id {
+    padding: 1px 8px 1px 4px;
+    border-top: solid 1px #AAA;
+    border-right: solid 1px #AAA;
+    border-bottom: solid 1px #AAA;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  &.-error {
+    display: block;
+
+    & + .converted-id {
+      margin-left: 0;
+    }
+
+    &:before {
+      content: "!";
+      color: white;
+      background-color: #ec3030;
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+      border-radius: 100%;
+      margin-right: .4em;
+    }
+  }
+}
+
+#IDNavigator {
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+
+  label,
+  input,
+  select,
+  p {
+    margin-bottom: 0;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
+  input[type="text"] {
+    background-color: #ecf8fa;
+    border: solid 1px #999;
+    outline: none;
+    line-height: 20px;
+    padding: 2px 12px;
+    border-radius: 12px;
+  }
+
+  input[type="text"]:hover {
+    border-color: #33717f;
+    box-shadow: 0 0 6px #45b8cc;
+  }
+
+  select {
+    font-size: 14px;
+  }
+
+  .button {
+    background: linear-gradient(to bottom, #45b8cc, #33717f);
+    color: white;
+    border: none;
+    line-height: 20px;
+    padding: 2px 12px;
+    border-radius: 4px;
+    outline: none;
+
+    &.-disabled {
+      background: linear-gradient(to bottom, #cacaca, #828384);
+      cursor: not-allowed;
+    }
+  }
+
+  & > .input {
+    padding: 40px 0 20px;
+
+    & > .rowblock > .right {
+      & > input {
+        width: calc(100% - 220px);
+      }
+
+      & > button {
+        width: 80px;
+      }
+    }
+  }
+
+  & > .processing {
+    padding: 20px 0 20px;
+  }
+
+  & > .input,
+  & > .processing {
+    position: relative;
+    border-bottom: solid 1px #AAA;
+
+    &:after {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-left: solid 1px #AAA;
+      border-bottom: solid 1px #AAA;
+      background-color: white;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: -6px;
+    }
+  }
+
+
+  & > .input > .rowblock,
+  & > .processing > .rowblock,
+  & > .output > .rowblock {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    .label {
+      color: #999;
+      padding: 2px .5em 2px 0;
+      font-size: 12px;
+      line-height: 20px;
+      display: inline-block;
+    }
+
+    & > .left {
+      -webkit-flex-basis: 20%;
+      flex-basis: 20%;
+      min-width: 200px;
+      text-align: right;
+      padding-right: .5em;
+    }
+
+    & > .right {
+      -webkit-box-flex: 2;
+      -webkit-flex-grow: 2;
+      flex-grow: 2;
+      text-align: left;
+    }
+
+    & + .rowblock {
+      margin-top: .75em;
+    }
+  }
+
+}
+
+#IDNavigator > .output {
+  padding: 30px 0 40px;
+
+  & > .rowblock > .right {
+    padding: 2px 0;
+  }
+
+  & > .rowblock > .right > .noid {
+    color: #CCC;
+  }
+
+  & > .rowblock > .right > .singleid,
+  & > .rowblock > .right > .multipleid {
+    display: none;
+
+    & > a {
+      display: inline-block;
+      line-height: 20px;
+      padding: 2px 16px 2px 12px;
+      border-radius: 12px;
+      border: solid 1px #45b8cc;
+
+      &:after {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-left: solid 2px #45b8cc;
+        border-top: solid 2px #45b8cc;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+        vertical-align: middle;
+        position: relative;
+        left: 5px;
+      }
+
+      & + a {
+        margin-left: .2em;
+      }
+    }
+  }
+}
+
+#IDNavigator.-setsingleid > .output > .rowblock > .right {
+  & > .noid {
+    display: none;
+  }
+
+  & > .singleid {
+    display: inline-block;
+  }
+}
+
+
+#IDNavigator.-setsmultipleid > .output > .rowblock > .right {
+  & > .noid {
+    display: none;
+  }
+
+  & > .multipleid {
+    display: inline-block;
+  }
+}

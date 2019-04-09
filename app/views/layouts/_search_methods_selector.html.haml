@@ -1,0 +1,10 @@
+- current ||= nil
+
+%ul#search-methods-selector
+  - ApplicationHelper::SearchMethods.each do |x|
+    - if current == x
+      %li.current
+        = x.label
+    - else
+      %li
+        = link_to x.label, x.path

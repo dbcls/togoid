@@ -1,0 +1,48 @@
+- content_for :head do
+  = javascript_pack_tag 'root'
+  = stylesheet_pack_tag 'root'
+
+#main
+  %section
+    .main-container
+      #search-methods-container
+        = render 'layouts/search_methods_selector', current: ApplicationHelper::SearchMethods::IDNAVIGATOR
+        #IDNavigator.-setsingleid
+          .input
+            .rowblock
+              .left
+                %span.label Enter ID(s):
+              .right
+                %input#input-id{type: 'text'}/
+                %button#input-button.button.-disabled Convert
+                %button#clear-button.button Clear
+            .rowblock
+              .left
+                %span.label Type:
+              .right
+                %select#input-type
+                  %option{value: 'auto'} Auto
+                  %option{value: 'ncbi_gene'} NCBI Gene ID
+                  %option{value: 'refseq'} RefSeq ID
+                  %option{value: 'affy'} Affymetrix ID
+                  %option{value: 'ensg'} Ensembl ID
+                  %option{value: 'hgnc'} HGNC ID
+          .processing
+            .rowblock
+              .left
+                %span.label Convert to:
+              .right
+                #NCBIGeneIDs
+          .output
+            .rowblock
+              .left
+                %span.label Send to:
+              .right
+                .noid
+                  %p Not found
+                .singleid
+                  %a#send-to-gendoo{href: '', target: '_blank'} Gendoo
+                  %a#send-to-ggrna{href: '', target: '_blank'} GGRNA
+                  %a#send-to-refex{href: '', target: '_blank'} RefEx
+                .multipleid
+                  %a#send-to-chipatlas{href: '', target: '_blank'} ChIP-Atlas

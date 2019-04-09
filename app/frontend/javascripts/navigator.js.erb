@@ -1,0 +1,105 @@
+"use strict";
+
+var API_BASE = "<%= (url = ENV['TOGOID_ROOT_URL']) ? URI.parse(url).merge('convert?') : '/convert?' %>";
+
+$(function () {
+  var $IDNavigator = $("#IDNavigator"),
+    $inputId = $("#input-id"),
+    $inputButton = $("#input-button"),
+    $clearButton = $("#clear-button"),
+    $inputType = $("#input-type"),
+    $NCBIGeneIDs = $("#NCBIGeneIDs"),
+    $sendToGendoo = $("#send-to-gendoo"),
+    $sendToGgrna = $("#send-to-ggrna"),
+    $sendToRefex = $("#send-to-refex");
+
+  var uriVars = {};
+
+  window.location.search.substr(1).split("&").forEach(function (keyValue1) {
+    var keyValue2 = keyValue1.split("=");
+    uriVars[keyValue2[0]] = keyValue2[1];
+  });
+
+  if (uriVars.id) {
+    var ids = unescape(uriVars.id).split(",");
+    $inputId.val(ids);
+
+    if (uriVars.from) {
+      $inputType.val(uriVars.from);
+    }
+
+    fetch(API_BASE.concat(window.location.search.substr(1)), {
+      mode: "cors",
+      method: "get"
+    }).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      if (json.error) {
+        $IDNavigator.removeClass("-setsingleid");
+        $IDNavigator.removeClass("-setsmultipleid");
+        $NCBIGeneIDs.html("<span class='converted-id -error'>".concat(json.error, "</span>"));
+      } else {
+        $NCBIGeneIDs.html(json.map(function (datum) {
+          if (datum.error) {
+            return "<div class='converted-id -error'>".concat(datum.error, "</div>");
+          } else {
+            return "<span class='converted-id'><span class='database'>".concat(datum.destination[0].label, "</span><span class='id'>").concat(datum.destination[0].id, "</span></span>");
+          }
+        }).join(""));
+
+        var converted = json.filter(function (datum) {
+          return datum.error === undefined;
+        });
+
+        if (converted.length === 0) {
+          $IDNavigator.removeClass("-setsingleid");
+          $IDNavigator.removeClass("-setsmultipleid");
+        } else if (converted.length === 1) {
+          $IDNavigator.addClass("-setsingleid");
+          $IDNavigator.removeClass("-setsmultipleid");
+          $sendToGendoo.attr("href", "https://gendoo.dbcls.jp/cgi-bin/gendoo.cgi?genename=".concat(converted[0].destination[0].id, "&taxonomy=human&submit=Search"));
+          $sendToGgrna.attr("href", "https://ggrna.dbcls.jp/geneid%3a".concat(converted[0].destination[0].id));
+          $sendToRefex.attr("href", "https://refex.dbcls.jp/gene_info.php?lang=ja&db=human&geneID=".concat(converted[0].destination[0].id));
+        } else {
+          $IDNavigator.addClass("-setsmultipleid");
+          $IDNavigator.removeClass("-setsingleid");
+        }
+      }
+    });
+  }
+
+  $inputId.on("keyup", function (e) {
+    if (e.delegateTarget.value === "") {
+      $inputButton.addClass("-disabled");
+    } else {
+      $inputButton.removeClass("-disabled");
+
+      if (e.originalEvent && e.originalEvent.key === "Enter") {
+        $inputButton.trigger("click");
+      }
+    }
+  }).triggerHandler("keyup");
+
+  $inputButton.on("click", function (e) {
+    if (!e.delegateTarget.classList.contains("-disabled")) {
+      var _ids = $inputId.val().split(/,|\s+/g).filter(function (id) {
+        return id !== "";
+      });
+
+      var parameters = {
+        from: $inputType.val(),
+        id: _ids
+      };
+
+      window.location.search = "?".concat(parametersToString(parameters));
+    }
+  });
+
+  $clearButton.on("click", function () {
+    window.location.search = "";
+  });
+
+  function parametersToString(parameters) {
+    return "".concat(parameters.from === "auto" ? "" : "from=".concat(parameters.from, "&"), "id=").concat(encodeURIComponent(parameters.id.join(",")));
+  }
+});
