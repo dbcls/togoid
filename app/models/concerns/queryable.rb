@@ -54,7 +54,7 @@ module Queryable
 
     # @return [String]
     def endpoint_url
-      ENV['ENDPOINT_URL'] || 'http://localhost:8890/sparql'
+      ENV['TOGOID_ENDPOINT_URL'] || 'http://localhost:8890/sparql'
     end
   end
 
