@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.5'
 
 # js/css
 gem 'coffee-rails', '~> 4.2'
+gem 'js-routes', '~> 1.4'
 gem 'sass-rails', '~> 5.0'
 gem 'webpacker'
 
