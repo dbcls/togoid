@@ -15,7 +15,7 @@ if [[ $1 = "start-server" ]]; then
   fi
 
   if [[ "$RAILS_ENV" != "production" && -f Procfile.dev ]]; then
-    bundle exec foreman start -f Procfile.dev
+    RAILS_PORT=8080 bundle exec foreman start -f Procfile.dev
   else
     bundle exec foreman start
   fi
