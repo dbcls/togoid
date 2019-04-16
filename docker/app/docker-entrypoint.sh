@@ -8,14 +8,13 @@ if [[ $1 = "start-server" ]]; then
 
   yarn install
 
-  if [[ $NODE_ENV = "production" ]]; then
+  if [[ "$NODE_ENV" = "production" || "$RAILS_ENV" = "production" ]]; then
     bundle exec rails webpacker:compile
+    rm -rf /var/www/*
+    cp -r /app/public/* /var/www/
   fi
 
-  rm -rf /var/www/*
-  cp -r /app/public/* /var/www/
-
-  if [[ $RAILS_ENV != "production" && -f Procfile.dev ]]; then
+  if [[ "$RAILS_ENV" != "production" && -f Procfile.dev ]]; then
     bundle exec foreman start -f Procfile.dev
   else
     bundle exec foreman start
