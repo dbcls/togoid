@@ -1,8 +1,9 @@
 class ConverterController < ApplicationController
   # GET /converter
-  def index
+  def converter
     @mode = 'convert'
     @current = ApplicationHelper::SearchMethods::ID_CONVERTER
+    render 'converter/index'
   end
 
   # GET /resolver
