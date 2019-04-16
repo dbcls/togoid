@@ -1,6 +1,6 @@
 "use strict";
 
-var API_BASE = "<%= (url = ENV['TOGOID_ROOT_URL']) ? URI.parse(url).merge('convert?') : '/convert?' %>";
+var API_BASE = "<%= (url = ENV['TOGOID_ROOT_URL'].presence) ? URI.parse(url).merge('convert?') : '/convert?' %>";
 
 $(function () {
   var $IDNavigator = $("#IDNavigator"),
