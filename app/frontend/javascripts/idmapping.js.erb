@@ -1,5 +1,5 @@
-var TEACH_PATH = '<%= Rails.application.routes.url_helpers.converter_teach_path %>';
-var CONVERT_PATH = '<%= Rails.application.routes.url_helpers.converter_convert_path %>';
+var TEACH_PATH = Routes.converter_teach_path();
+var CONVERT_PATH = Routes.converter_convert_path();
 
 $(function () {
   var $w = $(window);
