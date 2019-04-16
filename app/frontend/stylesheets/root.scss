@@ -119,7 +119,6 @@
       border-left: solid 1px #AAA;
       border-bottom: solid 1px #AAA;
       background-color: white;
-      -webkit-transform: rotate(-45deg);
       transform: rotate(-45deg);
       display: block;
       position: absolute;
@@ -144,7 +143,6 @@
     }
 
     & > .left {
-      -webkit-flex-basis: 20%;
       flex-basis: 20%;
       min-width: 200px;
       text-align: right;
@@ -152,8 +150,6 @@
     }
 
     & > .right {
-      -webkit-box-flex: 2;
-      -webkit-flex-grow: 2;
       flex-grow: 2;
       text-align: left;
     }
@@ -193,7 +189,6 @@
         height: 7px;
         border-left: solid 2px #45b8cc;
         border-top: solid 2px #45b8cc;
-        -webkit-transform: rotate(135deg);
         transform: rotate(135deg);
         vertical-align: middle;
         position: relative;
