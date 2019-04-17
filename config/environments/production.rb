@@ -85,4 +85,7 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  config.action_view.logger = nil
+  config.logger = ActiveSupport::Logger.new('log/production.log', 5, 10 * 1024 * 1024)
 end
