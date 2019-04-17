@@ -83,8 +83,6 @@ class HGNC
     def identifier(p, o)
       query = client.select(:id)
                 .distinct
-                .from(RDF::URI('http://togoid.dbcls.jp/graph/hgnc'))
-                .from(RDF::URI('http://togoid.dbcls.jp/graph/affymetrix'))
                 .where([:id, p, o])
 
       result = query.result

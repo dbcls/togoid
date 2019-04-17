@@ -6,7 +6,7 @@ class ApiController < ApplicationController
     raise(TogoIDError, 'Missing parameter: id') unless (ids = params[:id].split(/[,\s]/))
 
     type = if (from = params[:from].presence)
-             Identifier::TYPES[from]&.to_sym || raise(TogoIDError, "Unknown value for 'from': #{from}")
+             Identifier::TYPES[from.to_sym] || raise(TogoIDError, "Unknown value for 'from': #{from}")
            else
              Identifier.detect(ids.first)
            end
@@ -20,7 +20,7 @@ class ApiController < ApplicationController
           label: type.label
         },
         destination: Array(dest.cross_references)
-                       .select { |x| x.match?(Identifier::TYPES[:ncbi_gene].prefix) }
+                       .select { |x| x.match?(Identifier::TYPES[:ncbi].prefix) }
                        .map { |x| { id: RDF::URI(x).path.split('/').last, type: 'ncbi', label: 'NCBI Gene' } } # TODO hard coded
       }
     rescue StandardError => e
