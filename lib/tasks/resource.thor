@@ -62,6 +62,8 @@ class Resource < Thor
     case name
     when 'hgnc'
       %w[https://github.com /med2rdf/hgnc/blob/master/hgnc_complete_set.ttl]
+    when 'affymetrix'
+      raise NotImplementedError
     else
       raise "Unknown name: #{name}"
     end
