@@ -72,7 +72,9 @@ class Resource < Thor
 
     case name
     when 'hgnc'
-      %W[#{dir} *.ttl http://togoid.org/graph/hgnc]
+      [dir, '*.ttl', 'http://togoid.dbcls.jp/graph/hgnc']
+    when 'affymetrix'
+      [dir, '*.ttl', 'http://togoid.dbcls.jp/graph/affymetrix']
     else
       raise "Unknown name: #{name}"
     end
