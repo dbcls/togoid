@@ -2,39 +2,47 @@ class HGNC
   include Queryable
 
   class << self
+    # @param [String, Integer] id HGNC Gene ID
     def find(id)
-      s = RDF::URI("http://identifiers.org/hgnc/#{id.sub(/(HGNC|hgnc):/, '')}")
+      id = id.to_s.sub(/(HGNC|hgnc):/, '').to_i
+
+      s = RDF::URI("http://identifiers.org/hgnc/#{id}")
       query = client.select(:symbol, :name, :alias_names, :pubmed, :cross_references)
                 .distinct
-                .from(RDF::URI('http://togoid.org/graph/hgnc'))
+                .from(RDF::URI('http://togoid.dbcls.jp/graph/hgnc'))
                 .where([s, RDF::RDFS.label, :symbol])
                 .where([s, RDF::Vocab::DC.description, :name])
                 .optional([s, RDF::Vocab::SKOS.altLabel, :alias_names])
                 .optional([s, RDF::Vocab::DC.references, :pubmed])
                 .optional([s, RDF::RDFS.seeAlso, :cross_references])
 
-      raise ResourceNotFound.new(nil, self, id) if query.result.count.zero?
+      result = query.result
 
-      new do |attr|
+      raise ResourceNotFound.new(nil, self, id) if result.count.zero?
+
+      new(result) do |attr|
         attr.id = id
-        attr.symbol = safe_value(Array((bind = query.result.bindings)[:symbol]).uniq.first)
-        attr.name = safe_value(Array(bind[:name]).uniq.first)
-        attr.alias_names = Array(bind[:alias_names]).uniq.map(&method(:safe_value))
-        attr.pubmed = safe_value(Array(bind[:pubmed]).uniq.first)
-        attr.cross_references = Array(bind[:cross_references]).uniq.map(&method(:safe_value))
       end
     end
 
-    def having(p, o)
-      query = client.select(:s)
+    # @param [String] symbol HGNC Gene symbol
+    def find_by_symbol(symbol)
+      query = client.select(:s, :name, :alias_names, :pubmed, :cross_references)
                 .distinct
-                .from(RDF::URI('http://togoid.org/graph/hgnc'))
-                .where([:s, p, o])
+                .from(RDF::URI('http://togoid.dbcls.jp/graph/hgnc'))
+                .where([:s, RDF::RDFS.label, symbol])
+                .where([:s, RDF::Vocab::DC.description, :name])
+                .optional([:s, RDF::Vocab::SKOS.altLabel, :alias_names])
+                .optional([:s, RDF::Vocab::DC.references, :pubmed])
+                .optional([:s, RDF::RDFS.seeAlso, :cross_references])
 
-      msg = "Not found any #{self} that associates #{o} with #{p}"
-      raise(ResourceNotFound, msg) if query.result.count.zero?
+      result = query.result
 
-      query.result
+      raise ResourceNotFound.new(nil, self, symbol) if result.count.zero?
+
+      new(result) do |attr|
+        attr.symbol = symbol
+      end
     end
 
     def convert(obj)
@@ -47,6 +55,8 @@ class HGNC
         from_refseq(obj)
       when Ensembl
         from_ensembl(obj)
+      when Affymetrix
+        from_affymetrix(obj)
       else
         raise(ArgumentError, "Unknown source: #{obj.class}")
       end
@@ -55,24 +65,34 @@ class HGNC
     private
 
     def from_ncbi_gene(obj)
-      having(RDF::RDFS.seeAlso, RDF::URI("http://identifiers.org/ncbigene/#{obj.id}")).map do |r|
-        id = r.id.path.split('/').last
-        find(id)
-      end
+      find(identifier(RDF::RDFS.seeAlso, RDF::URI("http://identifiers.org/ncbigene/#{obj.id}")))
     end
 
     def from_refseq(obj)
-      having(RDF::RDFS.seeAlso, RDF::URI("http://identifiers.org/refseq/#{obj.id}")).map do |r|
-        id = r.id.path.split('/').last
-        find(id)
-      end
+      find(identifier(RDF::RDFS.seeAlso, RDF::URI("http://identifiers.org/refseq/#{obj.id}")))
     end
 
     def from_ensembl(obj)
-      having(RDF::RDFS.seeAlso, RDF::URI("http://identifiers.org/ensembl/#{obj.id}")).map do |r|
-        id = r.id.path.split('/').last
-        find(id)
-      end
+      find(identifier(RDF::RDFS.seeAlso, RDF::URI("http://identifiers.org/ensembl/#{obj.id}")))
+    end
+
+    def from_affymetrix(obj)
+      find(identifier(RDF::URI('http://rdf.identifiers.org/ontology/link'), RDF::URI("http://identifiers.org/affy.probeset/#{obj.id}")))
+    end
+
+    def identifier(p, o)
+      query = client.select(:id)
+                .distinct
+                .from(RDF::URI('http://togoid.dbcls.jp/graph/hgnc'))
+                .from(RDF::URI('http://togoid.dbcls.jp/graph/affymetrix'))
+                .where([:id, p, o])
+
+      result = query.result
+
+      msg = "Not found any #{self} that associates #{o} with #{p}"
+      raise(ResourceNotFound, msg) if result.count.zero?
+
+      result.first.id.value.split('/').last
     end
   end
 
@@ -83,8 +103,18 @@ class HGNC
   attr_accessor :pubmed
   attr_accessor :cross_references
 
-  def initialize(**attributes)
-    attributes.each { |k, v| send("#{k}=", v) }
+  def initialize(attributes)
+    attributes.each { |k, v| send("#{k}=", v) } if attributes.is_a?(Hash)
+
+    if attributes.is_a?(RDF::Query::Solutions)
+      bind = attributes.bindings
+      @id = safe_value(Array(bind[:s]).uniq.first).to_i
+      @symbol = safe_value(Array(bind[:symbol]).uniq.first)
+      @name = safe_value(Array(bind[:name]).uniq.first)
+      @alias_names = Array(bind[:alias_names]).uniq.map(&method(:safe_value))
+      @pubmed = safe_value(Array(bind[:pubmed]).uniq.first)
+      @cross_references = Array(bind[:cross_references]).uniq.map(&method(:safe_value))
+    end
 
     yield self if block_given?
   end

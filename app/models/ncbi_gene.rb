@@ -4,7 +4,7 @@ class NCBIGene
   class << self
     def find(id)
       query = client.select
-                 .from(RDF::URI('http://togoid.org/graph/hgnc'))
+                 .from(RDF::URI('http://togoid.dbcls.jp/graph/hgnc'))
                  .where([RDF::URI("http://identifiers.org/ncbigene/#{id}"), :p, :o])
 
       raise ResourceNotFound.new(nil, self, id) if query.result.count.zero?

@@ -12,7 +12,7 @@ class ApiController < ApplicationController
            end
 
     result = ids.map do |id|
-      dest = HGNC.convert(type.klass.find(id))
+      dest = type.klass == HGNC ? HGNC.find_by_symbol(id) : HGNC.convert(type.klass.find(id))
       {
         source: {
           id: id,
@@ -24,6 +24,7 @@ class ApiController < ApplicationController
                        .map { |x| { id: RDF::URI(x).path.split('/').last, type: 'ncbi', label: 'NCBI Gene' } } # TODO hard coded
       }
     rescue StandardError => e
+      Rails.logger.error([e.message, e.backtrace].flatten.join("\n"))
       {
         source: {
           id: id,
@@ -34,10 +35,36 @@ class ApiController < ApplicationController
       }
     end
 
+    # TODO refactor
+    if result.count { |x| x[:destination] } > 1
+      result = ids.map do |id|
+        dest = type.klass == HGNC ? HGNC.find_by_symbol(id) : HGNC.convert(type.klass.find(id))
+        {
+          source: {
+            id: id,
+            type: type.key,
+            label: type.label
+          },
+          destination: [{ id: dest.symbol, type: 'hgnc', label: 'HGNC' }]
+        }
+      rescue StandardError => e
+        Rails.logger.error([e.message, e.backtrace].flatten.join("\n"))
+        {
+          source: {
+            id: id,
+            type: type.key,
+            label: type.label
+          },
+          error: e.message
+        }
+      end
+    end
+
     respond_to do |format|
       format.json { render json: result }
     end
   rescue TogoIDError => e
+    Rails.logger.error(e)
     respond_to do |format|
       format.json { render json: { error: e.message } }
     end
