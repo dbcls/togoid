@@ -16,13 +16,7 @@ module Queryable
     # @param [Object#value] obj
     # @return [String,nil]
     def safe_value(obj)
-      return nil unless obj
-
-      return obj unless obj.respond_to?(:value)
-
-      return obj.value unless obj.respond_to?(:datatype)
-
-      cast(obj.value, obj.datatype)
+      Queryable.safe_value(obj)
     end
 
     ##
@@ -32,22 +26,7 @@ module Queryable
     # @param [Class] datatype
     # @return [String,nil]
     def cast(value, datatype)
-      case datatype
-      when RDF::Literal::Boolean
-        value.match?(/true/)
-      when RDF::Literal::Integer
-        value.to_i
-      when RDF::Literal::Double, RDF::Literal::Decimal
-        value.to_f
-      when RDF::Literal::Time
-        Time.parse(value)
-      when RDF::Literal::Date
-        Date.parse(value)
-      when RDF::Literal::DateTime
-        DateTime.parse(value)
-      else
-        value
-      end
+      Queryable.cast(value, datatype)
     end
 
     private
@@ -55,6 +34,46 @@ module Queryable
     # @return [String]
     def endpoint_url
       ENV['TOGOID_ENDPOINT_URL'] || 'http://localhost:8890/sparql'
+    end
+  end
+
+  ##
+  # Returns the casted value
+  #
+  # @param [Object#value] obj
+  # @return [String,nil]
+  def safe_value(obj)
+    return nil unless obj
+
+    return obj unless obj.respond_to?(:value)
+
+    return obj.value unless obj.respond_to?(:datatype)
+
+    cast(obj.value, obj.datatype)
+  end
+
+  ##
+  # Cast the value to its datatype
+  #
+  # @param [Object] value
+  # @param [Class] datatype
+  # @return [String,nil]
+  def cast(value, datatype)
+    case datatype
+    when RDF::Literal::Boolean
+      value.match?(/true/)
+    when RDF::Literal::Integer
+      value.to_i
+    when RDF::Literal::Double, RDF::Literal::Decimal
+      value.to_f
+    when RDF::Literal::Time
+      Time.parse(value)
+    when RDF::Literal::Date
+      Date.parse(value)
+    when RDF::Literal::DateTime
+      DateTime.parse(value)
+    else
+      value
     end
   end
 
