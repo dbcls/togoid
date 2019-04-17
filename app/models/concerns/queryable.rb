@@ -90,6 +90,10 @@ module Queryable
       ret
     end
   end
+end
 
-  ::SPARQL::Client.prepend Queryable::Logger
+module SPARQL
+  class Client
+    prepend Queryable::Logger
+  end
 end
