@@ -77,7 +77,8 @@ class HGNC
     end
 
     def from_affymetrix(obj)
-      find(identifier(RDF::URI('http://rdf.identifiers.org/ontology/link'), RDF::URI("http://identifiers.org/affy.probeset/#{obj.id}")))
+      ncbi = identifier(RDF::URI('http://rdf.identifiers.org/ontology/link'), RDF::URI("http://identifiers.org/affy.probeset/#{obj.id}"))
+      find(identifier(RDF::RDFS.seeAlso, RDF::URI("http://identifiers.org/ncbigene/#{ncbi}")))
     end
 
     def identifier(p, o)
